@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>トップページ</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-login {
+            background-color: #007BFF;
+        }
+
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-signup {
+            background-color: #28a745;
+        }
+
+        .btn-signup:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+    <h1>ようこそ！</h1>
+    <div class="button-container">
+        <a href="/login/" class="btn btn-login">ログイン</a>
+        <a href="/signup/" class="btn btn-signup">新規登録</a>
+    </div>
+</body>
+</html>

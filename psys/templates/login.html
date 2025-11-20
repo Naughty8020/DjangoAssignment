@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ログイン</title>
+  </head>
+  <body>
+    <h2>ログイン</h2>
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/login/" method="post">
+      {% csrf_token %}
+      <label for="employee_no">社員番号:</label><br />
+      <input
+        type="text"
+        id="employee_no"
+        name="employee_no"
+        required
+      /><br /><br />
+
+      <label for="password">パスワード:</label><br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+      /><br /><br />
+
+      <button type="submit">ログイン</button>
+    </form>
+
+    <p>アカウントをお持ちでない場合は <a href="/signup/">新規登録</a></p>
+  </body>
+</html>
