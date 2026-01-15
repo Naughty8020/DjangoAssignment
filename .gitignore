@@ -1,0 +1,25 @@
+# --- Python / uv 関連 ---
+__pycache__/
+*.py[cod]
+.venv/
+.python-version
+# uv.lock はコミットするのでここには書かない
+
+# --- Django 関連 ---
+db.sqlite3
+db.sqlite3-journal
+# 開発中に生成される静的ファイルやアップロードファイル
+staticfiles/
+media/
+
+# --- 環境変数 (もし作成したら) ---
+.env
+
+# --- OS / エディタ 関連 ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- その他 ---
+# requirements.txt は uv で管理しているなら不要ですが、
+# 念のため残してコミットしても構いません。
