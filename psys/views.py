@@ -34,6 +34,10 @@ def logout(request):
 def hello(request):
     return render(request, 'hello.html')
 
+def customers(request):
+    customers = Customer.objects.all()
+    return render(request, 'customers.html', {'customers': customers})
+
 # メインページのビュー
 def main(request):
     customers = Customer.objects.all()

@@ -1,0 +1,31 @@
+   <nav>
+     <a href="{%url 'customers'%}">得意先管理</a>
+      <a href="#">得意先集計</a>
+      <!-- <a href="#"></a> -->
+      <a href="#">設定</a>
+      <a href="{% url 'logout' %}">ログアウト</a>
+    </nav>
+
+
+    <style>
+
+    nav {
+        width: 200px;
+        background-color: #34495e;
+        height: 100vh;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        padding-top: 1rem;
+      }
+      nav a {
+        display: block;
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      nav a:hover {
+        background-color: #1abc9c;
+      }
+    </style>
