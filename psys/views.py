@@ -31,6 +31,9 @@ def logout(request):
     auth_logout(request)  # セッション情報をクリアしてログアウト
     return redirect('login')
 
+def hello(request):
+    return render(request, 'hello.html')
+
 # メインページのビュー
 def main(request):
     customers = Customer.objects.all()
