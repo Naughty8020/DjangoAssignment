@@ -84,11 +84,12 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3307',
         'OPTIONS': {
-            'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
-            }
-        }
+            # 日本語Windows環境の古いDBの場合、cp932(Shift-JIS)を指定することが多いです
+            'charset': 'cp932', 
+            'init_command': "SET NAMES cp932",
+        },
     }
-
+}
 
 
 # Password validation

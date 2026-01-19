@@ -115,3 +115,8 @@ def customer_delete(request, pk):
     customer = Customer.objects.get(pk=pk)
     customer.delete()
     return redirect('customers')        
+
+
+def orders_list(request):
+    orders = Orders.objects.all()
+    return render(request, 'orders_list.html', {'orders': orders})
