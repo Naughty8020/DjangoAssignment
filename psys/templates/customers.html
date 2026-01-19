@@ -48,49 +48,55 @@
       }
     </style>
   </head>
-  <body>
-    <header>管理サイト - メインページ</header>
+<body>
+  <header>管理サイト - メインページ</header>
 
-    {% include 'sidebar.html' %}
-    <main>
-      <h2>ダッシュボード</h2>
+  {% include 'sidebar.html' %}
+  <main>
+    <h2>ダッシュボード</h2>
 
-      <div class="card">
-        <h3>顧客情報</h3>
+    <div class="card">
+      <h3>顧客情報</h3>
 
-        <form action="/search" method="get">
-          <input type="text" name="q" placeholder="検索..." />
-          <button type="submit">検索</button>
-        </form>
-
-        <table border="1">
-          <thead>
-            <tr>
-              <th>得意先コード</th>
-              <th>得意先</th>
-              <th>電話</th>
-              <th>郵便番号</th>
-              <th>住所</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for customer in customers %}
-            <tr>
-              <td>{{ customer.customer_code }}</td>
-              <td>{{ customer.customer_name }}</td>
-              <td>{{ customer.customer_telno }}</td>
-              <td>{{ customer.customer_postalcode }}</td>
-              <td>{{ customer.customer_address }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-              <td colspan="7">顧客がいません。</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <div style="margin-bottom: 10px;">
+        <a href="{% url 'customer_create' %}" style="padding: 5px 10px; background: blue; color: white; text-decoration: none; border-radius: 3px;">+ 新規得意先登録</a>
       </div>
-    </main>
-  </body>
-</html>
+
+      <form action="/search" method="get">
+        <input type="text" name="q" placeholder="検索..." />
+        <button type="submit">検索</button>
+      </form>
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th>得意先コード</th>
+            <th>得意先</th>
+            <th>電話</th>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>操作</th> </tr>
+        </thead>
+        <tbody>
+          {% for customer in customers %}
+          <tr>
+            <td>{{ customer.customer_code }}</td>
+            <td>{{ customer.customer_name }}</td>
+            <td>{{ customer.customer_telno }}</td>
+            <td>{{ customer.customer_postalcode }}</td>
+            <td>{{ customer.customer_address }}</td>
+            <td>
+              <a href="{% url 'customer_update' customer.pk %}">編集</a> | 
+              <a href="{% url 'customer_delete' customer.pk %}" style="color: red;" onclick="return confirm('本当に削除しますか？')">削除</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6">顧客がいません。</td> </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body></html>
 

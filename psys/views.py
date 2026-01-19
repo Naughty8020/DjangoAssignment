@@ -4,6 +4,8 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import logout as auth_logout
 from .models import Employee, Customer, Orders
 from .models import Customer
+from .forms import CustomerForm
+
 # ホームページのビュー
 def index(request):
     return render(request, 'index.html')
@@ -77,3 +79,39 @@ def signup(request):
         return redirect('login')
 
     return render(request, 'signup.html')
+
+def customer_create(request):
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save(commit=False) # まだコミット（保存）しない
+            customer.delete_flag = 0           # 手動で値をセット
+            customer.save()                    # 今度こそ保存
+            return redirect('customers')
+    else:
+        form = CustomerForm()
+    return render(request, 'customer_create.html', {
+        'form': form,
+    })
+
+
+
+def customer_update(request, pk):
+    customer = Customer.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('customers')
+    else:
+        form = CustomerForm(instance=customer)
+
+    return render(request, 'customer_update.html', {'form': form})  
+
+
+def customer_delete(request, pk):
+    customer = Customer.objects.get(pk=pk)
+    customer.delete()
+    return redirect('customers')        

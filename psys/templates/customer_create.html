@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>得意先登録</title>
+    <style>
+    .form-container { max-width: 500px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input[type="text"], input[type="tel"] { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ddd; }
+    .btn-group { margin-top: 20px; }
+    .btn-save { background: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    .btn-back { background: #6c757d; color: white; padding: 10px 20px; text-decoration: none; margin-left: 10px; }
+    </style>
+  </head>
+  <body>
+      <header>管理サイト - メインページ</header>
+
+  {% include 'sidebar.html' %}
+
+    <div class="form-container">
+      <h2>{% if object %}得意先の編集{% else %}新規得意先登録{% endif %}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label>得意先コード</label>
+        {{ form.customer_code }} </div>
+
+    <div class="form-group">
+        <label>得意先名</label>
+        {{ form.customer_name }}
+    </div>
+
+    <div class="form-group">
+        <label>電話番号</label>
+        {{ form.customer_telno }}
+    </div>
+
+    <div class="form-group">
+        <label>郵便番号</label>
+        {{ form.customer_postalcode }}
+    </div>
+
+    <div class="form-group">
+        <label>住所</label>
+        {{ form.customer_address }}
+    </div>
+
+    <button type="submit" class="btn-save">保存する</button>
+</form>    </div>
+  </body>
+</html>
