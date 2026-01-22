@@ -5,7 +5,7 @@ from django.contrib.auth import logout as auth_logout
 from .models import Employee, Customer, Orders
 from .models import Customer
 from .forms import CustomerForm
-
+from django.db.models import Q
 # ホームページのビュー
 def index(request):
     return render(request, 'index.html')
@@ -120,3 +120,17 @@ def customer_delete(request, pk):
 def orders_list(request):
     orders = Orders.objects.all()
     return render(request, 'orders_list.html', {'orders': orders})
+
+def customer_list(request):
+    query = request.GET.get('q')  # フォームからの検索ワードを取得
+    if query:
+        customers = Customer.objects.filter(
+            Q(customer_name__icontains=query) | 
+            Q(customer_code__icontains=query) |
+            Q(customer_address__icontains=query)
+        )
+    else:
+        customers = Customer.objects.all()
+
+    return render(request, 'customers.html', {'customers': customers})
+

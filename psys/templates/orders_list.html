@@ -1,54 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>注文一覧</title>
-    <style>
-        body { margin: 0; display: flex; background-color: #f4f7f6; font-family: sans-serif; }
-        .main-content { flex: 1; margin-left: 250px; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #28a745; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .price { text-align: right; } /* 金額を右寄せにする */
-    </style>
+  <meta charset="UTF-8">
+  <title>注文一覧</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    /* ヘッダー固定 */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #2c3e50;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 1.5rem;
+      z-index: 1000;
+    }
+
+    /* サイドバー固定 */
+    aside {
+      position: fixed;
+      top: 60px; /* ヘッダーの下から開始 */
+      left: 0;
+      width: 200px;
+      bottom: 0;
+      background: #34495e;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    /* メインコンテンツ */
+    .main-content {
+      margin-top: 60px; /* ヘッダーの高さ分 */
+      margin-left: 200px; /* サイドバーの幅分 */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* テーブルデザイン */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #28a745;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .price {
+      text-align: right;
+    }
+  </style>
 </head>
 <body>
-    {% include 'sidebar.html' %}
+  {% include 'header.html' %}
+  {% include 'sidebar.html' %}
 
-    <div class="main-content">
-        <h1>注文一覧 (全{{ orders|length }}件)</h1>
+  <div class="main-content">
+    <h1>注文一覧 (全{{ orders|length }}件)</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>注文番号</th>
-                    <th>得意先コード</th>
-                    <th>担当者番号</th>
-                    <th>合計金額</th>
-                    <th>明細数</th>
-                    <th>納品日</th>
-                    <th>注文日</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for order in orders %}
-                <tr>
-                    <td>{{ order.order_no }}</td>
-                    <td>{{ order.customer_code }}</td>
-                    <td>{{ order.employee_no.employee_name }}</td>
-                    <td class="price">¥{{ order.total_price }}</td>
-                    <td>{{ order.detail_num }}</td>
-                    <td>{{ order.deliver_date }}</td>
-                    <td>{{ order.order_date }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="7">注文データがありません。</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>注文番号</th>
+          <th>得意先コード</th>
+          <th>担当者番号</th>
+          <th>合計金額</th>
+          <th>明細数</th>
+          <th>納品日</th>
+          <th>注文日</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order.order_no }}</td>
+          <td>{{ order.customer_code }}</td>
+          <td>{{ order.employee_no.employee_name }}</td>
+          <td class="price">¥{{ order.total_price }}</td>
+          <td>{{ order.detail_num }}</td>
+          <td>{{ order.deliver_date }}</td>
+          <td>{{ order.order_date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7">注文データがありません。</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
+
