@@ -121,6 +121,11 @@ def orders_list(request):
     orders = Orders.objects.all()
     return render(request, 'orders_list.html', {'orders': orders})
 
+
+def customers(request):
+    customers = Customer.objects.all()
+    return render(request, 'customers.html', {'customers': customers})
+
 def customer_list(request):
     query = request.GET.get('q')  # フォームからの検索ワードを取得
     if query:
@@ -132,5 +137,5 @@ def customer_list(request):
     else:
         customers = Customer.objects.all()
 
-    return render(request, 'customers.html', {'customers': customers})
+    return render(request, 'customer_list.html', {'customers': customers})
 

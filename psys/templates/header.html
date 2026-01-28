@@ -1,11 +1,30 @@
-  <header><a href="/customers">管理サイト - メインページ</a></header>
+<header><a class="headertext" href="/customers">管理システム</a></header>
 
-  <style>
-        header {
-        background-color: #2c3e50;
-        color: white;
-        padding: 1rem 2rem;
-        font-size: 1.5rem;
-      }
+<style>
+  header {
+    background-color: #00ffff; /* 水色 */
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    position: fixed; /* ヘッダーを画面上に固定 */
+    top: 0; /* 上にくっつける */
+    left: 0; /* 左端に合わせる */
+    width: 100%; /* 横幅100%に広げる */
+    z-index: 1000; /* 他の要素の上に表示されるようにする */
+    display: flex;
+    justify-content: center; /* 水平方向に中央揃え */
+    align-items: center; /* 垂直方向に中央揃え */
+  }
 
-  </style>
+  body {
+    margin-top: 80px; /* ヘッダーの高さ分だけボディーの上部に余白を追加 */
+  }
+
+  .headertext {
+    color: black; /* リンク色を黒に */
+    text-align: center;
+    text-decoration: none; /* 下線を消す */
+font-size: 3rem;
+}
+</style>
+

@@ -1,60 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>トップページ</title>
     <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            height: 100vh;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
+      body {
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        height: 100vh;
+        align-items: center; /* 垂直方向に中央揃え */
+        justify-content: center; /* 水平方向に中央揃え */
+        gap: 40px; /* 文字とボタンの間隔 */
+      }
 
-        h1 {
-            margin-bottom: 40px;
-        }
+      .container {
+        display: flex;
+        justify-content: center; /* 横並びで中央揃え */
+        align-items: center; /* 縦方向にも中央揃え */
+        gap: 40px; /* ボタンとタイトルの間隔 */
+      }
 
-        .button-container {
-            display: flex;
-            gap: 20px;
-        }
+      h1 {
+        margin: 0;
+        text-align: center; /* タイトルを中央揃え */
+      }
 
-        .btn {
-            padding: 15px 30px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
+      .button-container {
+        display: flex;
+        flex-direction: column; /* ボタンを縦に並べる */
+        gap: 20px;
+      }
 
-        .btn-login {
-            background-color: #007BFF;
-        }
+      .btn {
+        padding: 15px 30px;
+        font-size: 16px;
+        border: 2px solid black; /* ボタンに黒い枠線 */
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+        width: 200px; /* ボタンの幅を固定 */
+        background-color: #e9e9e9; /* ボタンの背景を#e9e9e9に */
+      }
 
-        .btn-login:hover {
-            background-color: #0056b3;
-        }
+      .btn:hover {
+        opacity: 0.8; /* ホバー時の透明度変更 */
+      }
 
-        .btn-signup {
-            background-color: #28a745;
-        }
+      .btn-login {
+        background-color: #e9e9e9; /* ログインボタンを#e9e9e9に */
+      }
 
-        .btn-signup:hover {
-            background-color: #1e7e34;
-        }
+      .btn-login:hover {
+        background-color: #d3d3d3; /* ホバー時に少し濃いグレー */
+      }
+
+      .btn-signup {
+        background-color: #e9e9e9; /* 新規登録ボタンを#e9e9e9に */
+      }
+
+      .btn-signup:hover {
+        background-color: #d3d3d3; /* ホバー時に少し濃いグレー */
+      }
     </style>
-</head>
-<body>
-    <h1>ようこそ！</h1>
-    <div class="button-container">
-        <a href="/login/" class="btn btn-login">ログイン</a>
-        <a href="/signup/" class="btn btn-signup">新規登録</a>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    <div class="container">
+      <div class="button-container">
+        <a href="/login/" class="btn btn-login" role="button" aria-label="ログインページに移動">ログイン</a>
+        <a href="/signup/" class="btn btn-signup" role="button" aria-label="新規登録ページに移動">新規登録</a>
+      </div>
+      <h1>トップページ</h1>
     </div>
-</body>
+  </body>
 </html>
+
